@@ -4,6 +4,12 @@ import Navigation from './Navigation';
 import Home from './Home';
 import Profile from './Profile';
 import Repositories from './Repositories';
+import {
+  HOME_ROUTE,
+  REPOSITORIES_ROUTE,
+  REPOSITORY_ID_ROUTE,
+  PROFILE_ROUTE
+} from '../constants/routes';
 
 const AuthenticatedApplication = () => {
   return (
@@ -11,15 +17,15 @@ const AuthenticatedApplication = () => {
       <Navigation />
 
       <Switch>
-        <Route path="/profile">
+        <Route path={PROFILE_ROUTE}>
           <Profile />
         </Route>
 
-        <Route path="/repositories">
+        <Route path={REPOSITORIES_ROUTE}>
           <Repositories />
         </Route>
 
-        <Route path="/">
+        <Route path={HOME_ROUTE}>
           <Home />
         </Route>
 
