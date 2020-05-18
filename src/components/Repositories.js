@@ -25,34 +25,36 @@ const fetchRepos = async(q) => {
   return results.json();
 };
 
+export const serializeRepo = repo => {
+  const {
+    id, full_name, description, stargazers_count, open_issues, issues_url, pulls_url, license, score
+  } = repo;
+  return {
+    description,
+    fullName: full_name,
+    id,
+    issuesUrl: issues_url,
+    license,
+    openIssues: open_issues,
+    pullsUrl: pulls_url,
+    score,
+    stargazersCount: stargazers_count
+  }
+};
+
 /**
  * Serializes only the information we need from each item.
  * @param {object[]} items
  * @returns {object[]}
  */
 const serializeResults = (items = []) => {
-  return items.map(item => {
-    const {
-      id, full_name, description, stargazers_count, open_issues, issues_url, pulls_url, license, score
-    } = item;
-    return {
-      description,
-      fullName: full_name,
-      id,
-      issuesUrl: issues_url,
-      license,
-      openIssues: open_issues,
-      pullsUrl: pulls_url,
-      score,
-      stargazersCount: stargazers_count
-    }
-  });
+  return items.map(serializeRepo);
 };
 
 const Repositories = ({ onRepoClick, searchResults, onLoadedRepos }) => {
   const [query, setQuery] = useState('');
   const debQuery = useDebounce(query, 250);
-  const { results, loading, error } = useQuery(() => {
+  const { result, loading, error } = useQuery(() => {
     if (debQuery) {
       return fetchRepos(debQuery);
     }
@@ -60,10 +62,10 @@ const Repositories = ({ onRepoClick, searchResults, onLoadedRepos }) => {
   }, [debQuery]);
 
   useEffect(() => {
-    if (results && results.items) {
-      onLoadedRepos(serializeResults(results.items));
+    if (result && result.items) {
+      onLoadedRepos(serializeResults(result.items));
     }
-  }, [results, onLoadedRepos]);
+  }, [result, onLoadedRepos]);
 
   return (
     <div>
@@ -92,7 +94,7 @@ export default function() {
       <Route exact path={REPOSITORIES_ROUTE} render={() => (
         <Repositories searchResults={loadedRepos} onLoadedRepos={setLoadedRepos} onRepoClick={setCurrRepo} />
       )} />
-      <Route path={REPOSITORY_ID_ROUTE} render={() => <Repository repo={currRepo} />} />
+      <Route path={REPOSITORY_ID_ROUTE} render={props => <Repository {...props} repo={currRepo} />} />
     </Switch>
   );
 };

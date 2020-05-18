@@ -16,6 +16,19 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
     color: ${theme.colors.black};
   }
+
+  h1 {
+    font-size: ${theme.fontSizes[4]};
+  }
+
+  a {
+    color: ${theme.colors.black};
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 1px solid ${theme.colors.black};
+    }
+  }
 `;
 
 function App() {

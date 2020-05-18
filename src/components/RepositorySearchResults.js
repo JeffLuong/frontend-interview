@@ -3,33 +3,7 @@ import styled from 'styled-components';
 import theme from '../theme';
 import { Link } from 'react-router-dom';
 import { REPOSITORIES_ROUTE } from '../constants/routes';
-
-const SectionWidth = {
-  large: '50rem',
-  medium: '40rem',
-  small: '30rem',
-  xsmall: '18rem'
-};
-
-const Section = styled.section`
-  display: flex;
-  max-width: ${SectionWidth.large};
-  margin: 0 auto;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  @media (max-width: ${theme.windowWidths[2]}) {
-    max-width: ${SectionWidth.medium};
-  }
-
-  @media (max-width: ${theme.windowWidths[1]}) {
-    max-width: ${SectionWidth.small};
-  }
-
-  @media (max-width: ${theme.windowWidths[0]}) {
-    max-width: ${SectionWidth.xsmall};
-  } 
-`;
+import Section from './Section';
 
 const Card = styled.article`
   display: flex;

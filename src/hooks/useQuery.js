@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useQuery = (func, deps = []) => {
-  const [results, setResults] = useState(null);
+  const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -9,7 +9,7 @@ const useQuery = (func, deps = []) => {
     try {
       setLoading(true);
       const res = await func();
-      setResults(res);
+      setResult(res);
     } catch(e) {
       setError(e);
     } finally {
@@ -22,7 +22,7 @@ const useQuery = (func, deps = []) => {
   }, deps);
 
   return {
-    results,
+    result,
     loading,
     error
   };
