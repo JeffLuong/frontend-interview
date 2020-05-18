@@ -4,6 +4,7 @@ import Navigation from './Navigation';
 import Home from './Home';
 import Profile from './Profile';
 import Repositories from './Repositories';
+import Repository from './Repository';
 import {
   HOME_ROUTE,
   REPOSITORIES_ROUTE,
@@ -22,7 +23,10 @@ const AuthenticatedApplication = () => {
         </Route>
 
         <Route path={REPOSITORIES_ROUTE}>
-          <Repositories />
+          <Switch>
+            <Route exact path={REPOSITORIES_ROUTE} component={Repositories} />
+            <Route path={REPOSITORY_ID_ROUTE} component={Repository} />
+          </Switch>
         </Route>
 
         <Route path={HOME_ROUTE}>
