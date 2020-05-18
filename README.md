@@ -47,6 +47,7 @@ You should not take more than 4 hours of time on this, even if you feel incomple
 Please, answer the following questions in this readme, underneath the question
 
 1. Name a newer feature of javascript that you believe is extra useful, and discuss how you have used it in this project, or how you would use it if needed.
+
 One newer feature of JS (ES2020) is the native support for dynamic imports. Although this was already kind of available using Webpack 4 + Babel 7, this new feature will allow apps to be chunked/code-splitted which will improve better initial load time (because the app will only load the currently required chunks rather than the entire app itself). I would have used this new feature to split the app at the route level, so the app will only load the currently viewed route.
 
 2. What are 3 things you think `React` does very poorly? What tools do this better, if any?
