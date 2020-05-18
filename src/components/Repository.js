@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Repository = () => {
+const Repository = ({ repo }) => {
+  console.log(repo);
   return null;
 }
 

@@ -94,26 +94,26 @@ const Details = styled.div`
   }
 `
 
-const RepositorySearchResults = ({ searchResults = [] }) => {
-  return (
-    <Section>
-      {searchResults.map(result => (
-        <Card>
-          <HeaderSection>
-            <Header>
-              <Link to={`${REPOSITORIES_ROUTE}/${result.id}`}>{result.fullName}</Link>
-            </Header>
-            <Description>{result.description}</Description>
-          </HeaderSection>
-          <Details>
-            <p>Stars: {result.stargazersCount}</p>
-            <p>Issues:{result.openIssues}</p>
-            <p>Score: {result.score}</p>
-          </Details>
-        </Card>
-      ))}
-    </Section>
-  );
-};
+const RepositorySearchResults = ({ searchResults = [], onRepoClick }) => (
+  <Section>
+    {searchResults.map(result => (
+      <Card key={result.id}>
+        <HeaderSection>
+          <Header>
+            <Link onClick={() => onRepoClick(result)} to={`${REPOSITORIES_ROUTE}/${result.id}`}>
+              {result.fullName}
+            </Link>
+          </Header>
+          <Description>{result.description}</Description>
+        </HeaderSection>
+        <Details>
+          <p>Stars: {result.stargazersCount}</p>
+          <p>Issues:{result.openIssues}</p>
+          <p>Score: {result.score}</p>
+        </Details>
+      </Card>
+    ))}
+  </Section>
+);
 
 export default RepositorySearchResults;

@@ -4,11 +4,9 @@ import Navigation from './Navigation';
 import Home from './Home';
 import Profile from './Profile';
 import Repositories from './Repositories';
-import Repository from './Repository';
 import {
   HOME_ROUTE,
   REPOSITORIES_ROUTE,
-  REPOSITORY_ID_ROUTE,
   PROFILE_ROUTE
 } from '../constants/routes';
 
@@ -18,21 +16,9 @@ const AuthenticatedApplication = () => {
       <Navigation />
 
       <Switch>
-        <Route path={PROFILE_ROUTE}>
-          <Profile />
-        </Route>
-
-        <Route path={REPOSITORIES_ROUTE}>
-          <Switch>
-            <Route exact path={REPOSITORIES_ROUTE} component={Repositories} />
-            <Route path={REPOSITORY_ID_ROUTE} component={Repository} />
-          </Switch>
-        </Route>
-
-        <Route path={HOME_ROUTE}>
-          <Home />
-        </Route>
-
+        <Route path={PROFILE_ROUTE} component={Profile} />
+        <Route path={REPOSITORIES_ROUTE} component={Repositories} />
+        <Route path={HOME_ROUTE} component={Home} />
         <Route path="*">
           <div>This path doesn't exist</div>
         </Route>
