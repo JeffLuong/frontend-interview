@@ -1,8 +1,9 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import Navigation from "./Navigation";
-import Home from "./Home";
-import Profile from "./Profile";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Navigation from './Navigation';
+import Home from './Home';
+import Profile from './Profile';
+import Repositories from './Repositories';
 
 const AuthenticatedApplication = () => {
   return (
@@ -12,6 +13,10 @@ const AuthenticatedApplication = () => {
       <Switch>
         <Route path="/profile">
           <Profile />
+        </Route>
+
+        <Route path="/repositories">
+          <Repositories />
         </Route>
 
         <Route path="/">

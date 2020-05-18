@@ -1,22 +1,22 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 import {
   REPOSITORIES_ROUTE,
   PROFILE_ROUTE,
   HOME_ROUTE
-} from "../constants/routes";
+} from '../constants/routes';
 
 const routes = [
   {
-    label: "Home",
+    label: 'Home',
     to: HOME_ROUTE
   },
   {
-    label: "Profile",
+    label: 'Profile',
     to: PROFILE_ROUTE
   },
   {
-    label: "Repositories",
+    label: 'Repositories',
     to: REPOSITORIES_ROUTE
   }
 ];
