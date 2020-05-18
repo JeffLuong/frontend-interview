@@ -21,6 +21,25 @@ const fetchRepos = async(q) => {
   return results.json();
 };
 
+/**
+ * Serializes only the information we need from each item.
+ * @param {object[]} items
+ * @returns {object[]}
+ */
+const serializeResults = (items = []) => {
+  return items.map(item => {
+    const { id, full_name, description, stargazers_count, open_issues, score } = item;
+    return {
+      id,
+      fullName: full_name,
+      description,
+      stargazersCount: stargazers_count,
+      openIssues: open_issues,
+      score
+    }
+  });
+};
+
 const Repositories = () => {
   const [query, setQuery] = useState('');
   const debQuery = useDebounce(query, 250);
@@ -35,7 +54,7 @@ const Repositories = () => {
 
   useEffect(() => {
     if (results && results.items) {
-      setSearchResults(results.items || []);
+      setSearchResults(serializeResults(results.items));
     }
   }, [results]);
 
