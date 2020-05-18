@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import theme from '../theme';
+import { Link } from 'react-router-dom';
+import { REPOSITORIES_ROUTE } from '../constants/routes';
 
 const SectionWidth = {
   large: '50rem',
@@ -8,13 +10,6 @@ const SectionWidth = {
   small: '30rem',
   xsmall: '18rem'
 };
-
-const CardWidth = {
-  large: '25%',
-  medium: '33%',
-  small: '50%',
-  xsmall: '100%'
-}
 
 const Section = styled.section`
   display: flex;
@@ -39,7 +34,6 @@ const Section = styled.section`
 const Card = styled.article`
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   width: calc(33% - 1rem);
   border: 1px solid ${theme.colors.darkgray};
   border-radius: .25rem;
@@ -54,24 +48,49 @@ const Card = styled.article`
   } 
 `;
 
+const HeaderSection = styled.div`
+  padding: ${theme.space[3]};
+  border-bottom: 1px solid ${theme.colors.lightgray};
+  flex-grow: 1;
+`;
+
 const Header = styled.h3`
   margin: 0 0 ${theme.space[2]} 0;
   text-overflow: ellipsis;
   width: 100%;
   overflow: hidden;
+  line-height: 1.5;
+
+  > a {
+    text-decoration: none;
+    color: ${theme.colors.black};
+
+    &:hover {
+      border-bottom: 1px solid ${theme.colors.black};
+    }
+  }
 `;
 
 const Description = styled.p`
   margin: 0 0 ${theme.space[2]} 0;
   font-size: ${theme.fontSizes[1]};
-  flex-grow: 1;
 `;
 
 const Details = styled.div`
+  padding: ${theme.space[3]};
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   > p {
     margin: 0;
+    font-size: ${theme.fontSizes[0]};
+
+    &:first-of-type {
+      font-weight: ${theme.fontWeights.semibold};
+      margin-bottom: .5rem;
+      width: 100%;
+    }
   }
 `
 
@@ -80,12 +99,16 @@ const RepositorySearchResults = ({ searchResults = [] }) => {
     <Section>
       {searchResults.map(result => (
         <Card>
-          <Header>{result.fullName}</Header>
-          <Description>{result.description}</Description>
+          <HeaderSection>
+            <Header>
+              <Link to={`${REPOSITORIES_ROUTE}/${result.id}`}>{result.fullName}</Link>
+            </Header>
+            <Description>{result.description}</Description>
+          </HeaderSection>
           <Details>
-            <p>{result.stargazersCount}</p>
-            <p>{result.openIssues}</p>
-            <p>{result.score}</p>
+            <p>Stars: {result.stargazersCount}</p>
+            <p>Issues:{result.openIssues}</p>
+            <p>Score: {result.score}</p>
           </Details>
         </Card>
       ))}

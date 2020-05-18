@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import Login from './components/Login';
 import { AuthController, useUserContext } from './contexts/user';
 import AuthenticatedApp from './components/AuthenticatedApp';
+import theme from './theme';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -13,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    color: ${theme.colors.black};
   }
 `;
 
