@@ -14,7 +14,7 @@ The starter application included has some signficant issues that make it not wor
 
 - On the repository page (which should mount the Repositories component), a user should be able to enter text into a field in order to search for repositories on github.
 
-  - These results should automatically populate (wihtout requiring a button press or enter keypress), however the request should only be sent when there's a lull in typing (rather than on every keystroke)
+  - These results should automatically populate (without requiring a button press or enter keypress), however the request should only be sent when there's a lull in typing (rather than on every keystroke)
   - The results should be displayed as cards or a list, containing at least the following info:
     - Full name | description | Stargazers Count | Open issues Count | match score
   - Clicking the list or card of the item should change to a page /repositories/:id
@@ -47,8 +47,12 @@ You should not take more than 4 hours of time on this, even if you feel incomple
 Please, answer the following questions in this readme, underneath the question
 
 1. Name a newer feature of javascript that you believe is extra useful, and discuss how you have used it in this project, or how you would use it if needed.
+One newer feature of JS (ES2020) is the native support for dynamic imports. Although this was already kind of available using Webpack 4 + Babel 7, this new feature will allow apps to be chunked/code-splitted which will improve better initial load time (because the app will only load the currently required chunks rather than the entire app itself). I would have used this new feature to split the app at the route level, so the app will only load the currently viewed route.
 
 2. What are 3 things you think `React` does very poorly? What tools do this better, if any?
+- Although I love hooks in React, I feel that for any engineer who is learning it for the first time (or even experienced engineers) may take more time reading / understanding what hooks are doing in any given component. Class component lifecycle methods are clear and separated (visually) so it's easier to read at a quick glance.
+- Global state management is quite difficult - especially if integrated with Redux. For any new engineer, it will take some time to wrap their head around all the different parts: reducers, actions, mapping state to props, mapping actions to props, etc. Ember.js may do this _slightly_ better from an intuitive standpoint (using Ember Data) because it is based on a more typical data modelling system. However that too has it's drawbacks.
+- A pro of React is that you can easily make components and reuse them. However, in larger engineering teams it may be _too_ easy to create new components for every feature or change, which may lead to too much bloat. Engineering teams should take stock of current existing components in a project and re-use (or adapt them) any where necessary.
 
 ## Submissions
 
